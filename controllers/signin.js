@@ -2,9 +2,9 @@ const handlaSignin = (req, res,database, bcrypt) => {
   var {email, password} = req.body;
 
   if (email && password) {
-    database.select('*').from('Users').where({email})
+    database.select('*').from('users').where({email})
     .then(user => {
-      database.select('*').from('Signin').where({email: user[0].email})
+      database.select('*').from('signin').where({email: user[0].email})
       .then(login => {
         var isValid = bcrypt.compareSync(password, login[0].password);
   
