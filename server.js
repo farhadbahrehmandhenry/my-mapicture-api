@@ -6,11 +6,11 @@ const _ = require('lodash');
 const register = require('./controllers/register');
 const signin = require('./controllers/signin');
 const profile = require('./controllers/profile');
-NODE_TLS_REJECT_UNAUTHORIZED = "0"
 var knex = require('knex');
 const app = express();
 var PORT = process.env.PORT || 5432;
-console.log(process.env.DATABASE_URL)
+process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
+
 var database = knex({
   client: 'pg',
   connection: {
