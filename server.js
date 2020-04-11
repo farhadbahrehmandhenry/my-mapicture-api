@@ -13,10 +13,8 @@ var PORT = process.env.PORT || 9000;
 var database = knex({
   client: 'mysql',
   connection: {
-    host : 'postgresql-symmetrical-02500',
-    user: 'root',
-    password: '',
-    database : 'my-mapicture-api'
+    host : process.env.DATABASE_URL,
+    ssl: true
   }
 });
 
