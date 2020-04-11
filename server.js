@@ -9,19 +9,19 @@ const profile = require('./controllers/profile');
 
 var knex = require('knex');
 const app = express();
-var PORT = process.env.PORT || 9000;
+var PORT = process.env.PORT || 5432;
 console.log(process.env.DATABASE_URL)
 var database = knex({
   client: 'pg',
   connection: {
-    // connectionString : process.env.DATABASE_URL,
-    // ssl: true,
-    // rejectUnauthorized: false
+    connectionString : process.env.DATABASE_URL,
+    ssl: true,
+    rejectUnauthorized: false
 
-    host : 'localhost',
-    user : 'postgres',
-    password : 'root',
-    database : 'mapicture'
+    // host : 'localhost',
+    // user : 'postgres',
+    // password : 'root',
+    // database : 'mapicture'
   }
 });
 
