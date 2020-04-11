@@ -13,7 +13,7 @@ var PORT = process.env.PORT || 9000;
 var database = knex({
   client: 'mysql',
   connection: {
-    host : process.env.DATABASE_URL,
+    connectionString : process.env.DATABASE_URL,
     ssl: true
   }
 });
