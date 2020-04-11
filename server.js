@@ -19,7 +19,7 @@ var database = knex({
 });
 
 app.use(cors({
-  origin: 'http://localhost:3000'
+  origin: 'localhost:3000'
 }));
 app.use(bodyParser.json());
 app.use(function(req, res, next) {
