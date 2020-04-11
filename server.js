@@ -14,12 +14,14 @@ console.log(process.env.DATABASE_URL)
 var database = knex({
   client: 'pg',
   connection: {
-    connectionString : process.env.DATABASE_URL,
-    ssl: true
-    // host : 'localhost',
-    // user : 'postgres',
-    // password : 'root',
-    // database : 'mapicture'
+    // connectionString : process.env.DATABASE_URL,
+    // ssl: true,
+    // rejectUnauthorized: false
+
+    host : 'localhost',
+    user : 'postgres',
+    password : 'root',
+    database : 'mapicture'
   }
 });
 
