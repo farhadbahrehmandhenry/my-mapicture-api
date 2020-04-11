@@ -2,9 +2,11 @@ const handleRegister = (req, res, database, bcrypt) => {
   var {name, email, password, confirmPassword} = req.body;
 
   if (name && email && password && confirmPassword) {
+
     if (password === confirmPassword) {
       // TODO check if we already have the user in database
       // TODO use transcaction to insert to two tables because they are related
+      console.log(name, email, password, confirmPassword)
       database.transaction(function(trx) {
         return trx
           .insert({name, email})

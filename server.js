@@ -9,12 +9,16 @@ const profile = require('./controllers/profile');
 var knex = require('knex');
 const app = express();
 var PORT = process.env.PORT || 9000;
-
+console.log(process.env.DATABASE_URL)
 var database = knex({
   client: 'mysql',
   connection: {
     connectionString : process.env.DATABASE_URL,
     ssl: true
+    // host : '127.0.0.1',
+    // user : 'root',
+    // password : 'root',
+    // database : 'mapicture'
   }
 });
 
