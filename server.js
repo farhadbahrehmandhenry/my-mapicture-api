@@ -9,7 +9,7 @@ const profile = require('./controllers/profile');
 var knex = require('knex');
 const app = express();
 var PORT = process.env.PORT || 5432;
-
+process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
 var database = knex({
   client: 'pg',
   connection: {
