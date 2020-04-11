@@ -6,19 +6,20 @@ const _ = require('lodash');
 const register = require('./controllers/register');
 const signin = require('./controllers/signin');
 const profile = require('./controllers/profile');
+
 var knex = require('knex');
 const app = express();
 var PORT = process.env.PORT || 9000;
 console.log(process.env.DATABASE_URL)
 var database = knex({
-  client: 'mysql',
+  client: 'pg',
   connection: {
-    // connectionString : process.env.DATABASE_URL,
-    // ssl: true
-    host : 'localhost',
-    user : 'farhad',
-    password : 'test',
-    database : 'mapicture'
+    connectionString : process.env.DATABASE_URL,
+    ssl: true
+    // host : 'localhost',
+    // user : 'postgres',
+    // password : 'root',
+    // database : 'mapicture'
   }
 });
 
