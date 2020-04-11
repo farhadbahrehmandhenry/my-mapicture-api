@@ -25,5 +25,9 @@
     "lodash": "^4.17.15",
     "mysql": "^2.18.1",
     "nodemon": "^2.0.3"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.8.4",
+    "@babel/core": "^7.9.0"
   }
 }

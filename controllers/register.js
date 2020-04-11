@@ -4,28 +4,25 @@ const handleRegister = (req, res, database, bcrypt) => {
   if (name && email && password && confirmPassword) {
 
     if (password === confirmPassword) {
+      var salt = bcrypt.genSaltSync(10);
+      var hash = bcrypt.hashSync(password, salt);
       // TODO check if we already have the user in database
       // TODO use transcaction to insert to two tables because they are related
-      console.log(name, email, password, confirmPassword)
-      database.transaction(function(trx) {
-        return trx
-          .insert({name, email})
-          .into('Users')
-          .then(function(ids) {
-            var salt = bcrypt.genSaltSync(10);
-            var hash = bcrypt.hashSync(password, salt);
 
-            return trx.select('*').from('Users').where('id', '=', ids[0]).then(user => {
-              if (user) {
-                return trx('Signin').insert({password: hash, email}).then(ids => {
-                  if (ids) {
-                    res.json(user[0]);
-                  }
-                })
-              }
+      database.transaction(trx => {
+        trx.insert({name, email})
+        .into('Signin')
+        .returning('email')
+        .then(signinEmail => {
+          return trx('Users')
+            .returning('*')
+            .insert({password: hash, email: signinEmail})
+            .then(user => {
+              console.log(user)
+              if (uder) res.json(user[0]);
             })
-          }).then(trx.commit).catch(trx.rollback)
-      })  
+        }).then(trx.commit).catch(trx.rollback)
+      }).catch(err => res.status(400).json('register failed')) 
     }
     else {
       res.status(400).json('passwords not matched');
