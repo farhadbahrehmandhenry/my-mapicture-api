@@ -10,13 +10,13 @@ const handleRegister = (req, res, database, bcrypt) => {
       // TODO use transcaction to insert to two tables because they are related
 
       database.transaction(trx => {
-        trx.insert({name, email})
+        trx.insert({password: hash, email})
         .into('Signin')
         .returning('email')
         .then(signinEmail => {
           return trx('Users')
             .returning('*')
-            .insert({password: hash, email: signinEmail})
+            .insert({name, email: signinEmail})
             .then(user => {
               console.log(user)
               if (uder) res.json(user[0]);
